@@ -10,6 +10,13 @@ import Link from 'next/link';
 
 
 export default function Navbar({setIsSideBarOpen}) {
+  const navList = [
+    {name:"ANASAYFA",link:"/"},
+    {name:"HAKKIMIZDA",link:"about"},
+    {name:"HİZMETLERİMİZ",link:"services"},
+    {name:"MEDYA",link:"media"},
+    {name:"İLETİŞİM",link:"communication"},
+    {name:"GÖRÜŞ VE ÖNERİ",link:"suggestionandopinion"}]
   return (
     <Box sx={{ flexGrow: 1, margin:"0 px" }}>
       <AppBar position="static">
@@ -24,11 +31,14 @@ export default function Navbar({setIsSideBarOpen}) {
           >
             <MenuIcon />
             </IconButton>
-           <Link href="/#" >
-            <Button color="inherit">Test1</Button>
-           </Link>
-            <Button color="inherit">Test2</Button>
-            <Button color="inherit">Login</Button>
+            {navList.map((item,index)=>{
+              return(
+                <Link key={index} href={item.link}  >
+                  <Button key={index} color="inherit">{item.name} </Button>
+                </Link>
+              )
+            })}
+          
         </Toolbar>
       </AppBar>
     </Box>
