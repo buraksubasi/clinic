@@ -57,6 +57,7 @@ export default function SideBar({isSideBarOpen,setIsSideBarOpen}) {
           <>
             {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
           <Drawer
+            key={anchor}
             anchor={anchor}
             open={isSideBarOpen}
             onClose={handleClose}

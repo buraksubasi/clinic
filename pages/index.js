@@ -2,10 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Layout from '../components/Layout'
-import GoogleMaps from '../components/GoogleMap'
-import Whatsapp from '../components/Whatsapp'
+import { useStoreListener } from '../utils/firebase'
 
 export default function Home() {
+  const store = useStoreListener();
+
   return (
     <div >
       <Head>
@@ -16,8 +17,8 @@ export default function Home() {
       <Layout>
 
         <main className={styles.main}>
-        <Whatsapp/>
           
+         
         </main>
 
         <footer className={styles.footer}>

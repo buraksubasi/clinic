@@ -107,6 +107,16 @@
   height: 1em;
   margin-left: 0.5rem;
 }
+.whatsapp{
+  position: fixed;
+  bottom:70px;
+  right: 30px; 
+  
+}
+.formDiv{
+  margin:10px;
+}
+
 
 @media (max-width: 600px) {
   .grid {
