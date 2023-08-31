@@ -21,8 +21,8 @@ export default function Navbar({setIsSideBarOpen}) {
 
   const authUser = useFirebaseAuthentication();
   return (
-    <Box sx={{ flexGrow: 1, margin:"0 px" }}>
-      <AppBar position="static">
+    <Box sx={{ flexGrow: 1, margin:"0 px",width:"100%" }}>
+      <AppBar className='nav-bar'  position="static" >
         <Toolbar>
             <IconButton
             size="large"

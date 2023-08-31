@@ -5,8 +5,10 @@ import GoogleMaps from '../../components/GoogleMap'
 const Communication = () => {
   return (
     <Layout>
-        <div>Communication</div>
-        <GoogleMaps/>
+        <div style={{display:"flex",justifyContent:"center",flexDirection:"column",alignItems:"center"}} >
+          Communication
+          <GoogleMaps/>
+        </div>
     </Layout>
   )
 }

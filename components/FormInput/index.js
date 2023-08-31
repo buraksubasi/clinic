@@ -4,7 +4,7 @@ import styles from "../../styles/Home.module.scss"
 import { Button, TextField } from '@mui/material'
 import { addFireStore } from '../../utils/firebase';
 const FormInput = ({handleClose, handleOpen, setText, setSeverity}) => {
-
+    const [isDisable,setIsDisable] = useState(true);
     const [inputState, setInputState] = useState({
         firstname:"",
         lastname:"",
@@ -100,7 +100,7 @@ const FormInput = ({handleClose, handleOpen, setText, setSeverity}) => {
                         
                     />
                 </div>
-                <Button type='submit' >Ekle</Button>
+                <Button type='submit' disabled={isDisable}>Ekle</Button>
 
 
             </form>

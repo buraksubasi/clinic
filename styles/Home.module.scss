@@ -1,8 +1,10 @@
 .container {
+  width: 100%;
   padding: 0 2rem;
 }
 
 .main {
+  width: 100%;
   min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
@@ -10,6 +12,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.nav-bar{
+  .MuiToolbar-root{
+    justify-content: space-between;
+  }
 }
 
 .footer {
@@ -118,12 +125,12 @@
 }
 
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
-}
+// @media (max-width: 600px) {
+//   .grid {
+//     width: 100%;
+//     flex-direction: column;
+//   }
+// }
 
 @media (prefers-color-scheme: dark) {
   .card,
