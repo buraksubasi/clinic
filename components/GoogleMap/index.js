@@ -5,8 +5,8 @@ const GoogleMaps = () => {
     <div class="mapouter">
             <div class="gmap_canvas">
               <iframe
-                width="600"
-                height="500"
+                width="auto"
+                height="auto"
                 id="gmap_canvas"
                 src="https://maps.google.com/maps?q=ac%C4%B1badem%20oral%20implantoloji&t=&z=13&ie=UTF8&iwloc=&output=embed"
                 frameborder="0"

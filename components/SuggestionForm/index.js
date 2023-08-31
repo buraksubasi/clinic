@@ -53,13 +53,13 @@ const SuggestionForm = ({ handleClose, handleOpen, setText, setSeverity }) => {
                 text: formik.values.text,
                 phone: formik.values.phone,
             })
+            formik.handleReset();
             handleOpen();
             setSeverity("success");
             setText("Mesajınız Başarılı bir şekilde iletilmiştir.");
         },
     });
     const [isDisable, setIsDisable] = useState(true);
-
     useEffect(()=>{
         if(Object.keys(formik.errors).length === 0 && Object.values(formik.values).every((value)=> value === "") ){
             setIsDisable(true);
@@ -73,10 +73,8 @@ const SuggestionForm = ({ handleClose, handleOpen, setText, setSeverity }) => {
        
     },[formik.errors,formik.values])
 
-console.log(Object.values(formik.values).every((value)=> value === ""))
     return (
         <Box sx={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-           
             <form onSubmit={formik.handleSubmit} className='suggestion-form'>
                 <TextField
                     name="firstName"
