@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDocs, getFirestore, onSnapshot } from "firebase/firestore";
 import { addDoc, collection } from "firebase/firestore";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { AuthCredential , getAuth, onAuthStateChanged, signInWithCredential, signInWithEmailAndPassword, signOut} from "firebase/auth";
 import { useEffect, useState } from "react";
 const firebaseConfig = {
   apiKey: "AIzaSyC2IpsXgfqFW-9hk47M04BOn80jrqp3tlg",
@@ -21,7 +21,6 @@ const auth = getAuth(app);
 
 
 const addFireStore = async (data) => {
-    console.log("firestore çalıştı")
     const { firstname, lastname, email, phone, text } = data
     try {
         const docRef = await addDoc(collection(db, "suggestion_opinion"), {
@@ -32,8 +31,8 @@ const addFireStore = async (data) => {
             phone,
           
         });
-
         console.log("Document written with ID: ", docRef.id);
+        
     } catch (e) {
         console.error("Error adding document: ", e);
     }
@@ -46,7 +45,6 @@ const useStoreListener = () => {
   const [store, setStore] = useState([]);
   useEffect(()=>{
     const unsb = onSnapshot(querySnapshot,(snapShot)=>{
-      console.log("snapShot=>",snapShot.docs.map((doc)=>doc.data()))
       const data = snapShot.docs.map((doc)=>doc.data());
       setStore(data);
     
@@ -62,12 +60,58 @@ const useStoreListener = () => {
 const loginFireStore = async (email, password) => {
   try {    
     const userCredential = await  signInWithEmailAndPassword(auth, email, password)
-    const user = userCredential.user
-    return user
+      const user = userCredential.user;
+    return Promise.resolve({data:user});
   } catch (error) {
-    console.error("error",error)
+    return Promise.reject({error});
   }
 }
-export { db, addFireStore,useStoreListener,loginFireStore }
+
+const logoutFireStore = () => {
+  signOut(auth).then(() => {
+    // Sign-out successful.
+  }).catch((error) => {
+    // An error happened.
+  });
+}
+const checkFirebaseUser = async () => {
+  let isLogin
+  try {
+    onAuthStateChanged(auth,  (user) => {
+      console.log("user",user);
+      if (user) {
+        isLogin=true
+      console.log("islog",isLogin);} 
+        else {
+         return isLogin=false} ; 
+    });
+    console.log("--islogin",isLogin);
+    if(isLogin)  return Promise.resolve({isLogin:true});
+    else return Promise.resolve({isLogin:false})
+  } catch (error) {
+    return Promise.reject({err:error});
+  }
+}
+const useFirebaseAuthentication = () => {
+  const [authUser, setAuthUser] = useState(undefined);
+
+  useEffect(() =>{
+     const unlisten = onAuthStateChanged(auth,
+        authUser => {
+          authUser
+            ? setAuthUser(authUser)
+            : setAuthUser(null);
+        },
+     );
+     return () => {
+         unlisten();
+     }
+  }, []);
+
+  return authUser
+}
+
+
+export { db,checkFirebaseUser, addFireStore,useStoreListener,loginFireStore, logoutFireStore,useFirebaseAuthentication }
 
 

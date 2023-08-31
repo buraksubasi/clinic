@@ -12,7 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { loginFireStore } from '../../utils/firebase';
+import { getrefreshToken, loginFireStore } from '../../utils/firebase';
+import { useRouter } from 'next/router';
 
 function Copyright(props) {
   return (
@@ -29,15 +30,39 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function Login({setLogin}) {
+export default function Login({ setText, setSeverity, handleOpen}) {
+  const router = useRouter();
   const handleSubmit = async(event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const user = await loginFireStore(data.get('email'),data.get('password'));
-    console.log("*********user",user);
-    if(user){
-        setLogin(true)
-    }
+    loginFireStore(data.get('email'),data.get('password'))
+      .then((res)=>{
+        console.log("res",res.data);
+        if(res.data){
+          setSeverity("success");
+          setText("Giriş Başarılı");
+          localStorage.setItem("user-email",res.data.email);
+          router.push("/dashboard");
+          handleOpen();
+        }
+      })
+      .catch((err)=>{
+        if(err.error.code === "auth/wrong-password"){
+          setSeverity("error");
+          setText("E-mail yada şifre girişi hatalı");
+          handleOpen();
+        }
+        else {
+          setSeverity("error");
+          setText("beklenmedik bir hata");
+          handleOpen();
+        }
+      })
+     
+    
+    // if(fetchData.data){
+    //     setLogin(true)
+    // }
   };
 
   return (
@@ -83,6 +108,7 @@ export default function Login({setLogin}) {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            <Button  onClick={getrefreshToken} >getir</Button>
             <Button
               type="submit"
               fullWidth
@@ -91,6 +117,7 @@ export default function Login({setLogin}) {
             >
               Sign In
             </Button>
+
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

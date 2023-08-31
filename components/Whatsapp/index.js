@@ -1,7 +1,7 @@
 import React from 'react'
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { IconButton } from '@mui/material';
-import styles from "../../styles/Home.module.css"
+import styles from "../../styles/Home.module.scss"
 import Link from 'next/link';
 const Whatsapp = () => {
 

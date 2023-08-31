@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
+import { useFirebaseAuthentication } from '../../utils/firebase';
 
 
 export default function Navbar({setIsSideBarOpen}) {
@@ -17,6 +18,8 @@ export default function Navbar({setIsSideBarOpen}) {
     {name:"MEDYA",link:"media"},
     {name:"İLETİŞİM",link:"communication"},
     {name:"GÖRÜŞ VE ÖNERİ",link:"suggestionandopinion"}]
+
+  const authUser = useFirebaseAuthentication();
   return (
     <Box sx={{ flexGrow: 1, margin:"0 px" }}>
       <AppBar position="static">
@@ -38,7 +41,9 @@ export default function Navbar({setIsSideBarOpen}) {
                 </Link>
               )
             })}
-          
+          {authUser ?(<Link href="/dashboard"  >
+                  <Button  color="inherit">Dashboard </Button>
+                </Link>):null }
         </Toolbar>
       </AppBar>
     </Box>

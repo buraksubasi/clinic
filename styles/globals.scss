@@ -14,17 +14,14 @@ a {
 * {
   box-sizing: border-box;
 }
-.deneme{
-    background-color: red;
-    width: 500px;
-    height: 500px;
-}
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-}
+
+// @media (prefers-color-scheme: dark) {
+//   html {
+//     color-scheme: dark;
+//   }
+//   body {
+//     color: white;
+//     background: black;
+//   }
+// }
+@import "./Home.module.scss"

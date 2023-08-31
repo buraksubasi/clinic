@@ -5,7 +5,6 @@ import Whatsapp from "../Whatsapp"
 const Layout = ({children}) => {
 
     const [isSideBarOpen, setIsSideBarOpen] = React.useState(false);
-    console.log("isSideBarOpen",isSideBarOpen)
     //   const handleToogleSideBar = () => {
     //     setIsSideBarOpen(!isSideBarOpen);
     //   }

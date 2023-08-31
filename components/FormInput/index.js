@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import Box from '@mui/material/Box';
-import styles from "../../styles/Home.module.css"
+import styles from "../../styles/Home.module.scss"
 import { Button, TextField } from '@mui/material'
 import { addFireStore } from '../../utils/firebase';
-const FormInput = () => {
+const FormInput = ({handleClose, handleOpen, setText, setSeverity}) => {
 
     const [inputState, setInputState] = useState({
         firstname:"",
@@ -28,6 +28,9 @@ const FormInput = () => {
             text:inputState.text ,
             phone: inputState.phone,
           })
+        handleOpen();
+        setSeverity("success");
+        setText("Mesajınız Başarılı bir şekilde iletilmiştir.")
         setInputState({
             firstname:"",
             lastname:"",
@@ -35,7 +38,6 @@ const FormInput = () => {
             email:"",
             text:""})
     }
-console.log("inputState",inputState)    
     return (
         <Box>
             <form onSubmit={(e)=>{
