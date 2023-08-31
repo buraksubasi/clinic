@@ -18,9 +18,6 @@ a {
 
 
 
-@media screen and (max-width: 959px)  {
-  html {
-    width: max-content;
-  }
-}
-@import "./Home.module.scss"
+
+@import "./Home.module.scss";
+@import "./responsive.scss";

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Layout from '../../components/Layout'
-import  FormInput from "../../components/FormInput"
+import  SuggestionForm from "../../components/SuggestionForm"
 import CustomSnackbar from '../../components/CustomSnackbar'
-import { Button } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 const SuggestionandOpinion = () => {
   const [open, setOpen] = useState(false);
   const [severity, setSeverity] = useState("");
@@ -15,11 +15,10 @@ const SuggestionandOpinion = () => {
   }
   return (
     <Layout>
-        <div>
+        
           <CustomSnackbar handleClose={handleClose} open={open} severity={severity} text={text}/>
-          <FormInput  handleClose={handleClose} handleOpen={handleOpen} setSeverity={setSeverity} setText={setText} />
-          <Button onClick={handleOpen} >aç</Button>
-        </div>
+          <SuggestionForm  handleClose={handleClose} handleOpen={handleOpen} setSeverity={setSeverity} setText={setText} />
+     
     </Layout>
   )
 }
