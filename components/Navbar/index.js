@@ -9,6 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
 import { useFirebaseAuthentication } from '../../utils/firebase';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Image from 'next/image';
 
 export default function Navbar({ setIsSideBarOpen }) {
   const navList = [
@@ -45,8 +46,9 @@ export default function Navbar({ setIsSideBarOpen }) {
               )
             })}
           </div>
-          <div>
-           <Button key={1} color="inherit"> ORAL SAĞLIK </Button>
+          <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+            <Image width={"20"} height={"20"} src='/dentIcon.png' alt='dis fotosu' />
+            <Button key={1} color="inherit"> ORAL SAĞLIK </Button>
           </div>
           <div>
 
